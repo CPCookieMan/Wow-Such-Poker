@@ -19,11 +19,11 @@ h1
 .colorgraph_red
 {
 	/* Nolan should change these to red. */
-	background: #2433a5;
-	background-image: -webkit-linear-gradient(left, #2433a5, #2433a5 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-	background-image: linear-gradient(to right, #2433a5, #2433a5 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	background: #ff0000;
+	background-image: -webkit-linear-gradient(left, #ff0000, #ff0000 12.5%, #df6565 12.5%, #df6565 25%, #6e0505 25%, #6e0505 37.5%, #f79292 37.5%, #f79292 50%, #620303 50%, #620303 62.5%, #b13d3d  62.5%, #b13d3d  75%, #cc8383  75%, #cc8383  87.5%, #ff0368 87.5%, #ff0368);
+	background-image: -moz-linear-gradient(left, #ff0000, #ff0000 12.5%, #df6565 12.5%, #df6565 25%, #6e0505 25%, #6e0505 37.5%, #f79292 37.5%, #f79292 50%, #620303 50%, #620303 62.5%, #b13d3d  62.5%, #b13d3d  75%, #cc8383  75%, #cc8383  87.5%, #ff0368 87.5%, #ff0368);
+	background-image: -o-linear-gradient(left, #ff0000, #ff0000 12.5%, #df6565 12.5%, #df6565 25%, #6e0505 25%, #6e0505 37.5%, #f79292 37.5%, #f79292 50%, #620303 50%, #620303 62.5%, #b13d3d  62.5%, #b13d3d  75%, #cc8383  75%, #cc8383  87.5%, #ff0368 87.5%, #ff0368);
+	background-image: linear-gradient(to right, #ff0000, #ff0000 12.5%, #df6565 12.5%, #df6565 25%, #6e0505 25%, #6e0505 37.5%, #f79292 37.5%, #f79292 50%, #620303 50%, #620303 62.5%, #b13d3d  62.5%, #b13d3d  75%, #cc8383  75%, #cc8383  87.5%, #ff0368 87.5%, #ff0368);
 }
 
 #message
@@ -39,5 +39,5 @@ h1
 
 .logo_align
 {
-text-align: center;
+	text-align: center;
 }
