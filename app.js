@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var passhash = require('./passhash');
 var hat = require('hat');
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://35.16.18.172/wowsuchdatabase');
@@ -81,6 +82,24 @@ app.use(function(err, req, res, next)
         message: err.message,
         error: {}
     });
+});
+
+io.sockets.on('connection', function(socket)
+{
+	socket.on('loginCheck', function(username, password)
+	{
+		db.collection('users').findOne({ username: username, password: passhash.hashPassword(username, password) }, function(err, res)
+		{
+			if(!err && res)
+			{
+				socket.emit('loginSuccess');
+			}
+			else
+			{
+				socket.emit('loginFailure', "Invalid username or password.");
+			}
+		});
+	});
 });
 
 function getUserFromToken(token, callback)

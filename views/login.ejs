@@ -8,7 +8,6 @@
 	<body>
 		<div class="row" style="margin-top:20px">
 			<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-				<form role="form">
 					<fieldset>
 						<h1>Welcome to Texas Doge'em!</h1>
 						<div class="logo_align">
@@ -16,25 +15,58 @@
 							</div>
 						<h2>Please Sign In</h2>
 						<hr class="colorgraph">
-						<div class="form-group">
-							<input type="username" name="username" id="username" required class="form-control input-lg" placeholder="Username">
-						</div>
-						<div class="form-group">
-							<input type="password" name="password" id="password" required class="form-control input-lg" placeholder="Password">
-						</div>
-						<hr class="colorgraph">
-						<div class="row">
-							<div class="col-xs-6 col-sm-6 col-md-6">
-								<a href="/register" class="btn btn-lg btn-primary btn-block">Register</a>
+						<form id="loginform" id="loginform" action="/login" method="post">
+							<div class="form-group">
+								<input type="username" name="username" id="username" required class="form-control input-lg" placeholder="Username">
 							</div>
-							<div class="col-xs-6 col-sm-6 col-md-6">
-								<input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
+							<div class="form-group">
+								<input type="password" name="password" id="password" required class="form-control input-lg" placeholder="Password">
 							</div>
-						</div>
+							<span id="message"></span>
+							<hr class="colorgraph">
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<a href="/register" class="btn btn-lg btn-primary btn-block">Register</a>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
+								</div>
+							</div>
+						</form>
 					</fieldset>
-				</form>
 			</div>
 		</div>
 	</body>
 	<% include include-js.ejs %>
+	<script>
+		var sumbit = false; 
+		$('#loginform').submit(function(e)
+		{
+			if(submit) return true;
+			e.preventDefault();
+			if($('#username').val() && $('#password').val())
+			{
+				socket.emit('loginCheck', $('#username').val(), $('#password').val());
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		});
+		
+		socket.on('loginSucceeded', function()
+		{
+			submit = true;
+			$('#loginform').submit();
+		});
+		
+		socket.on('loginFailure', function(message)
+		{
+			$("#message").text(message);
+			$('.colorgraph').addClass('colorgraph_red');
+		});
+		
+		//$('#welcome').arctext({ radius: 300 });
+	</script>
 </html>
