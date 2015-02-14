@@ -57,6 +57,55 @@ app.use('/', function(req, res, next)
 	}
 });
 
+app.use('/logout', function(req, res)
+{
+	getUserFromToken(req.cookies.token, function(err, result)
+	{
+		try
+		{
+			delete result.token;
+			db.collection('users').save(result);
+		} catch(e) {}
+	});
+	req.session.loggedIn = false;
+	res.clearCookie('token');
+	res.redirect('/');
+});
+
+app.use('/login', function(req, res)
+{
+	if(!(req.param('username') && req.param('password')))
+	{
+		res.send('Login failed.');
+	}
+	else
+	{
+		var users = db.collection('users');
+		users.findOne({username: req.param('username'), password: passhash.hashPassword(req.param('username'), req.param('password'))}, function(err, result)
+		{
+			try
+			{
+				if(!err && result)
+				{
+					result.token = hat();
+					users.save(result);
+					res.cookie('token', result.token);
+					req.session.loggedIn = true;
+					res.redirect('/room');
+				}
+				else
+				{
+					throw err;
+				}
+			}
+			catch(e)
+			{
+				next(e);
+			}
+		});
+	}
+});
+
 app.use('/register', function(req, res)
 {
 	res.render('register');
