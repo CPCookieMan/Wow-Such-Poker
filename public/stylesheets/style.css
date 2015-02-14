@@ -2,3 +2,15 @@ html, body
 {
 	font-family: "Comic Neue", "comic sans ms", sans-serif;
 }
+
+.table_title
+{
+	font-size: 150px;
+	font-family: "Comic Neue";
+	color: rgb( 221, 15, 15 );
+	text-align: left;
+	position: absolute;
+	left: 447.437px;
+	top: 393.914px;
+	z-index: 10;
+}
