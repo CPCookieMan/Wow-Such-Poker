@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var hat = require('hat');
+var db = mongojs('mongodb://35.16.18.172/wowsuchdatabase');
 var session = require('express-session');
 var io = require('socket.io')(server);
 
@@ -75,6 +76,21 @@ app.use(function(err, req, res, next)
         error: {}
     });
 });
+
+function getUserFromToken(token, callback)
+{
+	db.collection('users').findOne({token: token}, function(err, res)
+	{
+		if(!err && res)
+		{
+			callback(undefined, res);
+		}
+		else
+		{
+			callback(err);
+		}
+	});
+}
 
 console.log("Wow, such started. So port " + port + ".");
 
