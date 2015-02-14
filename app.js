@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var hat = require('hat');
+var mongojs = require('mongojs');
 var db = mongojs('mongodb://35.16.18.172/wowsuchdatabase');
 var session = require('express-session');
 var io = require('socket.io')(server);
