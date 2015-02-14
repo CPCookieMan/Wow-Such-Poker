@@ -45,6 +45,8 @@
 		{
 			e.preventDefault();
 			if(submit) return true;
+			$("#message").text('');
+			$('.colorgraph').removeClass('colorgraph_red');
 			if($('#username').val() && $('#password').val())
 			{
 				socket.emit('loginCheck', $('#username').val(), $('#password').val());
@@ -56,7 +58,7 @@
 			}
 		});
 		
-		socket.on('loginSucceeded', function()
+		socket.on('loginSuccess', function()
 		{
 			submit = true;
 			$('#loginform').submit();
