@@ -110,9 +110,9 @@ app.use('/register', function(req, res)
 {
 	if(req.param('username') && req.param('password'))
 	{
-		db.collection('users').findOne({ username: req.param('username').toLowerCase() }, function(err, res)
+		db.collection('users').findOne({ username: req.param('username').toLowerCase() }, function(err, result)
 		{
-			if(!err && res)
+			if(!err && result)
 			{
 				res.send('That username already exists!');
 			}
@@ -175,7 +175,10 @@ io.sockets.on('connection', function(socket)
 		});
 	});
 	
-	
+	socket.on('usernameCheck', function(username)
+	{
+		
+	})
 });
 
 function getUserFromToken(token, callback)
