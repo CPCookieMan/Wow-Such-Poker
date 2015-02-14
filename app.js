@@ -38,7 +38,7 @@ app.use('/', function(req, res, next)
 			{
 				if(!err && user)
 				{
-					res.redirect('/dashboard');
+					res.redirect('/room');
 				}
 				else
 				{
