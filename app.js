@@ -108,7 +108,32 @@ app.use('/login', function(req, res)
 
 app.use('/register', function(req, res)
 {
-	res.render('register');
+	if(req.param('username') && req.param('password'))
+	{
+		db.collection('users').findOne({ username: req.param('username').toLowerCase() }, function(err, res)
+		{
+			if(!err && res)
+			{
+				res.send('That username already exists!');
+			}
+			else
+			{
+				token = hat();
+				res.cookie('token', token);
+				req.session.loggedIn = true;
+				db.collection('users').save({
+					username: req.param('username').toLowerCase(),
+					password: passhash.hashPassword(req.param('username').toLowerCase(), req.param('password').toLowerCase()),
+					token: token
+				});
+				res.redirect('/room');
+			}
+		});
+	}
+	else
+	{
+		res.render('register');
+	}
 });
 
 app.use('/room', function(req, res)
@@ -149,6 +174,8 @@ io.sockets.on('connection', function(socket)
 			}
 		});
 	});
+	
+	
 });
 
 function getUserFromToken(token, callback)
