@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Texas Doge'em</a>
+                <a class="navbar-brand" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Welcome, <span id="user"></span>!</a>
             </div>
 			<ul class="nav navbar-top-links navbar-right">
 				ALPHA BUILD
@@ -44,7 +44,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.html">+ Create Room</a>
                         </li>
                     </ul>
                 </div>
@@ -57,4 +57,11 @@
     <!-- /#wrapper -->
 	</body>
 	<% include include-js.ejs %>
+	<script>
+	  socket.emit("getusername", token);
+	  socket.on("getusernameResponse", function(username)
+	  {
+	  $("user").text(username);
+	  });
+	</script>
 </html>
