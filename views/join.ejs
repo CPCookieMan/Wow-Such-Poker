@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <% include include-css.ejs %>
+  </head>
+  <body>
+    <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand room_bar" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Texas Doge'em ALPHA BUILD</a>
+	</div>
+	<!-- /.dropdown -->
+	  <ul class="nav navbar-right">
+	    <li data-toggle=tooltip data-placement="bottom" title="Logout">
+	      <a class="logout" href="/logout">
+		<i class="fa fa-power-off fa-fw"></i>
+	      </a>
+	    </li>
+	  </ul>
+
+	<!-- /.navbar-header -->
+      </nav>
+      <div id="buttonwrapper" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+	<div class="form-group">
+	  <input type="username" name="playername" autocomplete="off" required id="playername" class="form-control input-lg" placeholder="Nickname">
+	</div>
+	<div class="form-group">
+	  <input name="room" autocomplete="off" required id="room" class="form-control input-lg" placeholder="Enter room #">
+	</div>
+	<button class="btn btn-block btn-success"><h3>Join Game</h3></button>
+      </div>
+    </div>
+    <!-- /#wrapper -->
+  </body>
+  <% include include-js.ejs %>
+  <script>
+    socket.emit("getusername", token);
+    socket.on("getusernameResponse", function(username)
+    {
+     $("#user").text(username);
+    });
+  </script>
+</html>

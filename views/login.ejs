@@ -40,7 +40,7 @@
 	</body>
 	<% include include-js.ejs %>
 	<script>
-		var submit = false; 
+		var submit = false;
 		$('#loginform').submit(function(e)
 		{
 			if(submit) return true;
@@ -57,19 +57,19 @@
 				return true;
 			}
 		});
-		
+
 		socket.on('loginSuccess', function()
 		{
 			submit = true;
 			$('#loginform').submit();
 		});
-		
+
 		socket.on('loginFailure', function(message)
 		{
 			$("#message").text(message);
 			$('.colorgraph').addClass('colorgraph_red');
 		});
-		
+
 		//$('#welcome').arctext({ radius: 300 });
 	</script>
 </html>

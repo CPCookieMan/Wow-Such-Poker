@@ -150,6 +150,11 @@ app.use('/host', function(req, res)
 	res.render('host', {id: req.path.substring(1)});
 });
 
+app.use('/join', function(req, res)
+{
+	res.render('join');
+});
+
 app.use(function(req, res, next)
 {
     var err = new Error('Not Found');
@@ -183,12 +188,12 @@ io.sockets.on('connection', function(socket)
 			}
 		});
 	});
-	
+
 	socket.on('usernameCheck', function(username)
 	{
 		db.collection('users').findOne({token: token}, function(err, res) { socket.emit('usernameTaken', (!err && res) ? true : false)});
 	});
-	
+
 	socket.on('getusername', function(token)
 	{
 		getUserFromToken(token, function(err, result)

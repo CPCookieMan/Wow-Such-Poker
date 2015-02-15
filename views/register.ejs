@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Texas Doge'em</title>
+    <title>Texas Ðoge'em</title>
     <% include include-css.ejs %>
     <link rel="stylesheet" href="/stylesheets/login.css">
   </head>
@@ -40,10 +40,10 @@
   <% include include-js.ejs %>
   <script>
     $("#credentials").submit(function(e) {
-        if ($("#password").val() !== $("#password2").val()) {
-            $("#error").text("Passwords did not match!");
-            return false;
-        }
+     if ($("#password").val() !== $("#password2").val()) {
+      $("#error").text("Passwords did not match!");
+      return false;
+     }
     });
-    </script>
+  </script>
 </html>
