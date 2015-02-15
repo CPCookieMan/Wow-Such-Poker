@@ -7,52 +7,35 @@
 	<body>
 	    <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Welcome, <span id="user"></span>!</a>
-            </div>
-			<ul class="nav navbar-top-links navbar-right">
-				ALPHA BUILD
-				<li data-toggle=tooltip data-placement="bottom" title="Logout">
-					<a href="/logout">
-						<i class="fa fa-power-off fa-fw"></i>
-					</a>
-				</li>
-				<!-- /.dropdown -->
-			</ul>
-            <!-- /.navbar-header -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="index.html">+ Create Room</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
+			<!-- Navigation -->
+			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Texas Doge'em</a>
+				</div>
+				<ul class="nav navbar-top-links navbar-right">
+					ALPHA BUILD
+					<li data-toggle=tooltip data-placement="bottom" title="Logout">
+						<a href="/logout">
+							<i class="fa fa-power-off fa-fw"></i>
+						</a>
+					</li>
+					<!-- /.dropdown -->
+				</ul>
+				<!-- /.navbar-header -->
+			</nav>
+		
+			<div id="buttonwrapper" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<h3 style="text-align: center; margin-bottom: 30px;">Welcome, <span id="user"></span>!</h3>
+				<button class="btn btn-block btn-success"><h3>Create Game</h3></button>
+				<h3 style="text-align: center">or</h3>
+				<button class="btn btn-block btn-success"><h3>Redeem Balances</h3></button>
+			</div>
 	    </div>
     <!-- /#wrapper -->
 	</body>
