@@ -177,7 +177,7 @@ io.sockets.on('connection', function(socket)
 	
 	socket.on('usernameCheck', function(username)
 	{
-		
+		db.collection('users').findOne({token: token}, function(err, res) { socket.emit('usernameTaken', (!err && res) ? true : false)});
 	});
 	
 	socket.on('getusername', function(token)
