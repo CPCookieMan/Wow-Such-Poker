@@ -54,3 +54,26 @@ td
 {
 	font-size: 14pt;
 }
+
+.room_bar
+{
+	background: url("/img/bg/border.png");
+	position: absolute;
+	width: 100%;
+	height: 101%;
+}
+
+.navbar-default .navbar-brand
+{
+	color: white;
+}
+
+.fa-power-off:hover
+{
+	color:red;
+}
+
+.logout
+{
+color: white;
+}
