@@ -141,6 +141,15 @@ app.use('/room', function(req, res)
 	res.render('room');
 });
 
+app.use('/host', function(req, res)
+{
+	if(!req.path.substring(1))
+	{
+		res.redirect('/room');
+	}
+	res.render('host', {id: req.path.substring(1)});
+});
+
 app.use(function(req, res, next)
 {
     var err = new Error('Not Found');
