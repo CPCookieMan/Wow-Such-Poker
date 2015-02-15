@@ -3,22 +3,19 @@
 	<head>
 		<title>Texas Doge'em - Game <%= id %></title>
 		<% include include-css.ejs %>
+		<style>
+		body
+			{
+				background-image: url("/img/bg/table_top.png");
+				position: absolute;
+				background-size: cover;
+				left: 0px;
+				top: 0px;
+				z-index: 1;
+			}
+		</style>
 	</head>
 	<body>
-	    <div id="wrapper">
-			<div class="col-md-1"></div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-1"></div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1">Player 1</div>
-			<div class="col-md-1"></div>
-	    </div>
     <!-- /#wrapper -->
 	</body>
 	<% include include-js.ejs %>
