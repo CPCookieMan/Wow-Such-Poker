@@ -178,7 +178,15 @@ io.sockets.on('connection', function(socket)
 	socket.on('usernameCheck', function(username)
 	{
 		
-	})
+	});
+	
+	socket.on('getusername', function(token)
+	{
+		getUserFromToken(token, function(err, result)
+		{
+			if(!err & result) socket.emit('getusernameResponse', result.username);
+		});
+	});
 });
 
 function getUserFromToken(token, callback)
