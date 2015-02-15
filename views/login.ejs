@@ -8,21 +8,22 @@
 	<body>
 
 		<div class="row" style="margin-top:20px">
-			<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-				<form role="form">
-					<fieldset>
-						<h1 id="welcome">Welcome to Texas Doge'em!</h1>
-						<div class="logo_align">
+			<div id="card" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<fieldset>
+					<div class="logo_align">
 						<img class="login_logo" src="/img/logo/logo.png">
-							</div>
-						<h2>Please Sign In</h2>
-						<hr class="colorgraph">
+					</div>
+					<h1 id="welcome">Welcome to Texas Doge'em!</h1>
+					<h2>Please Sign In</h2>
+					<hr class="colorgraph">
+					<form id="loginform" id="loginform" action="/login" method="post">
 						<div class="form-group">
 							<input type="username" name="username" id="username" required class="form-control input-lg" placeholder="Username">
 						</div>
 						<div class="form-group">
 							<input type="password" name="password" id="password" required class="form-control input-lg" placeholder="Password">
 						</div>
+						<span id="message"></span>
 						<hr class="colorgraph">
 						<div class="row">
 							<div class="col-xs-6 col-sm-6 col-md-6">
@@ -32,10 +33,43 @@
 								<input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
 							</div>
 						</div>
-					</fieldset>
-				</form>
+					</form>
+				</fieldset>
 			</div>
 		</div>
 	</body>
 	<% include include-js.ejs %>
+	<script>
+		var submit = false; 
+		$('#loginform').submit(function(e)
+		{
+			e.preventDefault();
+			if(submit) return true;
+			$("#message").text('');
+			$('.colorgraph').removeClass('colorgraph_red');
+			if($('#username').val() && $('#password').val())
+			{
+				socket.emit('loginCheck', $('#username').val(), $('#password').val());
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		});
+		
+		socket.on('loginSuccess', function()
+		{
+			submit = true;
+			$('#loginform').submit();
+		});
+		
+		socket.on('loginFailure', function(message)
+		{
+			$("#message").text(message);
+			$('.colorgraph').addClass('colorgraph_red');
+		});
+		
+		//$('#welcome').arctext({ radius: 300 });
+	</script>
 </html>

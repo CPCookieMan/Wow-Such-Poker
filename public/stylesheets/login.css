@@ -25,13 +25,31 @@ h1
 	background-image: -o-linear-gradient(left, #ff0000, #ff0000 12.5%, #df6565 12.5%, #df6565 25%, #6e0505 25%, #6e0505 37.5%, #f79292 37.5%, #f79292 50%, #620303 50%, #620303 62.5%, #b13d3d  62.5%, #b13d3d  75%, #cc8383  75%, #cc8383  87.5%, #ff0368 87.5%, #ff0368);
 	background-image: linear-gradient(to right, #ff0000, #ff0000 12.5%, #df6565 12.5%, #df6565 25%, #6e0505 25%, #6e0505 37.5%, #f79292 37.5%, #f79292 50%, #620303 50%, #620303 62.5%, #b13d3d  62.5%, #b13d3d  75%, #cc8383  75%, #cc8383  87.5%, #ff0368 87.5%, #ff0368);
 }
+
+#message
+{
+	font-size: 12pt;
+}
+
 .login_logo
 {
-	height: 40%;
-	width: 40%;
+	height: 125px;
+	width: 125px;
 }
 
 .logo_align
 {
 	text-align: center;
+}
+
+#card
+{
+	padding: 35px;
+	background: white;
+	-webkit-box-shadow: 0px 0px 32px -2px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0px 0px 32px -2px rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 32px -2px rgba(0,0,0,0.7);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }

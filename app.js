@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var passhash = require('./passhash');
 var hat = require('hat');
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://35.16.18.172/wowsuchdatabase');
@@ -37,7 +38,7 @@ app.use('/', function(req, res, next)
 			{
 				if(!err && user)
 				{
-					res.redirect('/dashboard');
+					res.redirect('/room');
 				}
 				else
 				{
@@ -56,9 +57,83 @@ app.use('/', function(req, res, next)
 	}
 });
 
+app.use('/logout', function(req, res)
+{
+	getUserFromToken(req.cookies.token, function(err, result)
+	{
+		try
+		{
+			delete result.token;
+			db.collection('users').save(result);
+		} catch(e) {}
+	});
+	req.session.loggedIn = false;
+	res.clearCookie('token');
+	res.redirect('/');
+});
+
+app.use('/login', function(req, res)
+{
+	if(!(req.param('username') && req.param('password')))
+	{
+		res.send('Login failed.');
+	}
+	else
+	{
+		var users = db.collection('users');
+		users.findOne({username: req.param('username'), password: passhash.hashPassword(req.param('username'), req.param('password'))}, function(err, result)
+		{
+			try
+			{
+				if(!err && result)
+				{
+					result.token = hat();
+					users.save(result);
+					res.cookie('token', result.token);
+					req.session.loggedIn = true;
+					res.redirect('/room');
+				}
+				else
+				{
+					throw err;
+				}
+			}
+			catch(e)
+			{
+				next(e);
+			}
+		});
+	}
+});
+
 app.use('/register', function(req, res)
 {
-	res.render('register');
+	if(req.param('username') && req.param('password'))
+	{
+		db.collection('users').findOne({ username: req.param('username').toLowerCase() }, function(err, result)
+		{
+			if(!err && result)
+			{
+				res.send('That username already exists!');
+			}
+			else
+			{
+				token = hat();
+				res.cookie('token', token);
+				req.session.loggedIn = true;
+				db.collection('users').save({
+					username: req.param('username').toLowerCase(),
+					password: passhash.hashPassword(req.param('username').toLowerCase(), req.param('password').toLowerCase()),
+					token: token
+				});
+				res.redirect('/room');
+			}
+		});
+	}
+	else
+	{
+		res.render('register');
+	}
 });
 
 app.use('/room', function(req, res)
@@ -81,6 +156,29 @@ app.use(function(err, req, res, next)
         message: err.message,
         error: {}
     });
+});
+
+io.sockets.on('connection', function(socket)
+{
+	socket.on('loginCheck', function(username, password)
+	{
+		db.collection('users').findOne({ username: username, password: passhash.hashPassword(username, password) }, function(err, res)
+		{
+			if(!err && res)
+			{
+				socket.emit('loginSuccess');
+			}
+			else
+			{
+				socket.emit('loginFailure', "Invalid username or password.");
+			}
+		});
+	});
+	
+	socket.on('usernameCheck', function(username)
+	{
+		
+	})
 });
 
 function getUserFromToken(token, callback)
