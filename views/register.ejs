@@ -40,10 +40,10 @@
   <% include include-js.ejs %>
   <script>
     $("#credentials").submit(function(e) {
-        if ($("#password").val() !== $("#password2").val()) {
-            $("#error").text("Passwords did not match!");
-            return false;
-        }
+     if ($("#password").val() !== $("#password2").val()) {
+      $("#error").text("Passwords did not match!");
+      return false;
+     }
     });
-    </script>
+  </script>
 </html>
