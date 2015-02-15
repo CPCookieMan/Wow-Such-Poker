@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Texas Doge'em Dashboard</title>
 		<% include include-css.ejs %>
 	</head>
 	<body>
@@ -16,7 +16,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand room_bar" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Texas Doge'em ALPHA BUILD</a>
+					<a class="navbar-brand room_bar" href="/"><img width=25 style="display: inline; margin-top: -5px" src="/img/logo/logo.png"> Texas Ðoge'em ALPHA BUILD</a>
 				</div>
 				<ul class="nav navbar-top-links navbar-right">
 					<li data-toggle=tooltip data-placement="bottom" title="Logout">
@@ -31,19 +31,41 @@
 
 			<div id="buttonwrapper" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 				<h3 style="text-align: center; margin-bottom: 30px;">Welcome, <span id="user"></span>!</h3>
-				<button class="btn btn-block btn-success"><h3>Create Game</h3></button>
+				<button class="btn btn-block btn-success" id="creategame" onclick="createGame()"><h3>Create Game</h3></button>
 				<h3 style="text-align: center">or</h3>
 				<button class="btn btn-block btn-success"><h3>Redeem Balances</h3></button>
+			</div>
+			
+			<div id="joinwrapper" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<h3 style="text-align: center; margin-bottom: 30px;">Your game has been created. Please go to /join on your phone and enter the code displayed below.</h3>
+				<h1 style="text-align: center" id="code">xxxx</h1>
+				<div id="qr"></div>
+				<a id="start" href=""><button class="btn btn-block btn-success"><h3>Start Game</h3></button></a>
 			</div>
 	    </div>
     <!-- /#wrapper -->
 	</body>
 	<% include include-js.ejs %>
 	<script>
-	socket.emit("getusername", token);
-	socket.on("getusernameResponse", function(username)
-	{
-		$("#user").text(username);
-	});
+		socket.emit("getusername", token);
+		socket.on("getusernameResponse", function(username)
+		{
+			$("#user").text(username);
+		});
+		
+		function createGame()
+		{
+			socket.emit('createGame', token);
+			setButtonLoading("#creategame");
+		}
+		
+		socket.on('gameCreated', function(id)
+		{
+			$('#code').text(id);
+			$('#start').attr('href', '/host/' + id);
+			new QRCode(document.getElementById("qr"), "http://35.16.18.172:3050/join/" + id);
+			$('#buttonwrapper').css('display', 'none');
+			$('#joinwrapper').css('display', 'initial');
+		});
 	</script>
 </html>

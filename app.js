@@ -192,11 +192,43 @@ io.sockets.on('connection', function(socket)
 			if(!err && result) socket.emit('getusernameResponse', result.username);
 		});
 	});
+	
+	socket.on('createGame', function(token)
+	{
+		getUserFromToken(token, function(err, result)
+		{
+			if(!err && result)
+			{
+				if(!result.games) result.games = [];
+				var newroom = {
+					id: hat(16, 16),
+					players: []
+				};
+				result.games.push(newroom);
+				socket.emit('gameCreated', newroom.id);
+			}
+		});
+	});
 });
 
 function getUserFromToken(token, callback)
 {
 	db.collection('users').findOne({token: token}, function(err, res)
+	{
+		if(!err && res)
+		{
+			callback(undefined, res);
+		}
+		else
+		{
+			callback(err);
+		}
+	});
+}
+
+function getUserFromGameID(id, callback)
+{
+	db.collection('users').findOne({ "games.id": id }, function(err, res)
 	{
 		if(!err && res)
 		{
