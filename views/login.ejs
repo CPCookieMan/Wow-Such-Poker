@@ -43,8 +43,8 @@
 		var submit = false; 
 		$('#loginform').submit(function(e)
 		{
-			e.preventDefault();
 			if(submit) return true;
+			else e.preventDefault();
 			$("#message").text('');
 			$('.colorgraph').removeClass('colorgraph_red');
 			if($('#username').val() && $('#password').val())
