@@ -152,7 +152,11 @@ app.use('/host', function(req, res)
 
 app.use('/join', function(req, res)
 {
-	res.render('join');
+	if(!req.path.substring(1))
+	{
+		res.render('join', {id: req.path.substring(1)});
+	}
+	res.render('phonegame');
 });
 
 app.use(function(req, res, next)

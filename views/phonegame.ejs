@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <% include include-css.ejs %>
+	  <style>
+	  img
+		  {
+			  width: 100%;
+		  }
+		  
+		  #wrapper
+		  {
+			  margin-top: 50px;
+		  }
+		  
+		  #btnwrapper
+		  {
+				padding: 20px
+		  }
+	  </style>
+  </head>
+  <body>
+    <div id="wrapper">
+		<div class="col-xs-6"><img src="/img/cards/diamonds/a.png"></div>
+		<div class="col-xs-6"><img src="/img/cards/spades/queen.png"></div>
+		<div id="btnwrapper">
+			<button class="btn btn-block" style="opacity: 0">Ghost Button</button>
+			<button class="btn btn-block btn-success">Call</button>
+			<button class="btn btn-block btn-default">Check</button>
+			<button class="btn btn-block btn-warning">Fold</button>
+			<button class="btn btn-block btn-danger">Leave Game</button>
+		</div>
+    </div>
+    <!-- /#wrapper -->
+  </body>
+  <% include include-js.ejs %>
+  <script>
+    socket.emit("getusername", token);
+    socket.on("getusernameResponse", function(username)
+    {
+     $("#user").text(username);
+    });
+  </script>
+</html>
