@@ -32,7 +32,7 @@ th
 	width: 100px;
 }
 
-#buttonwrapper
+#buttonwrapper, #joinwrapper
 {
 	margin-top: 50px;
 	padding: 35px;
@@ -43,6 +43,11 @@ th
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+}
+
+#joinwrapper
+{
+	display: none;
 }
 
 table
