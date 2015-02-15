@@ -184,7 +184,7 @@ io.sockets.on('connection', function(socket)
 	{
 		getUserFromToken(token, function(err, result)
 		{
-			if(!err & result) socket.emit('getusernameResponse', result.username);
+			if(!err && result) socket.emit('getusernameResponse', result.username);
 		});
 	});
 });
