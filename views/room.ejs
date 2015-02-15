@@ -58,10 +58,10 @@
 	</body>
 	<% include include-js.ejs %>
 	<script>
-	  socket.emit("getusername", token);
-	  socket.on("getusernameResponse", function(username)
-	  {
-	  $("#user").text(username);
-	  });
+	socket.emit("getusername", token);
+	socket.on("getusernameResponse", function(username)
+	{
+		$("#user").text(username);
+	});
 	</script>
 </html>
